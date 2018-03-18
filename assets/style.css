@@ -1,0 +1,27 @@
+td,th{
+border: solid 1px white;
+  margin-right: 20px;
+  padding: 10px;
+  background-color: black;
+}
+table {
+  border-collapse: collapse;
+  text-align:center;
+  margin-left: 700px;
+  padding-right: 100px;
+  background-color : black;
+  color : white;
+}
+*{
+  text-align : center;
+  margin-bottom : 20px;
+  margin-left: 10px;
+  background-color: #333333;
+  color: white;
+}
+label {
+  font-weight: bold;
+  font-size : 30px;
+  color: white;
+}
+

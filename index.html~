@@ -1,0 +1,339 @@
+// Projet réalisé par Christopher DUBOIS et Romain SIMON
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Projet mathématiques</title>
+  <link rel="stylesheet" type="text/css" href="./assets/style.css">
+  <script src="http://www.iut-fbleau.fr/projet/maths/?rah_external_output=pagerank.js"></script>
+  <script src="http://www.iut-fbleau.fr/projet/maths/?rah_external_output=logins.js"></script>
+  <script language="javascript">
+ 
+function ValiderFormulaire(formulaire) {
+    //initialisation
+    var choix = new Array(10);
+    var choixT = document.getElementsByClassName('messageCheckbox');
+    var y = 0;
+    for (var v=0; v<10; v++) {
+      if (choixT[v].checked){
+        choix[y] = choixT[v].value;
+      }
+      y++;
+    }
+    var prClassement = remplissageTableau();
+    var nvClassement = initialiserTableau();
+    var nbVotants = initialiserTableau();
+    var resultat = "";
+    var resMatiere = "";
+    var votant = "";
+    var nbVote = 0;
+    var nbVotant = 0;
+    //boucle pour afficher tout vote en fonction des matieres
+    for (var i in votes) { // i passe dans votes et prend chaque valeur soit chaque nom
+        if (votes.hasOwnProperty(i)) {
+            resultat += "<p>" + i + "\n </p>";
+            for (var j in votes[i]) { // j passe dans votes[i]et prend chaque valeur, ici les matieres
+                    for (var t = 0; t < votes[i][j].length; t++) { //première boucle qui va compter le nb de personnes pour qui i a voté
+                      for (var a = 0; a < prClassement.length; a++) { // deuxième boucle qui va chercher cb de personnes ont voté pour i dans la matière choisie
+                        if (i == prClassement[a][0]) {
+                          if (choix[0] != null) {
+                            nbVotant = prClassement[a][1];
+                            nbVotants[a][1] = nbVotant;
+                            nbVotant = 0;
+                          }
+                          if (choix[1] != null) {
+                            nbVotant = prClassement[a][2];
+                            nbVotants[a][2] = nbVotant;
+                            nbVotant = 0;
+                          }
+                          if (choix[2] != null) {
+                            nbVotant = prClassement[a][3];
+                            nbVotants[a][3] = nbVotant;
+                            nbVotant = 0;
+                          }
+                          if (choix[3] != null) {
+                            nbVotant = prClassement[a][4];
+                            nbVotants[a][4] = nbVotant;
+                            nbVotant = 0;
+                          }
+                          if (choix[4] != null) {
+                            nbVotant = prClassement[a][5];
+                            nbVotants[a][5] = nbVotant;
+                            nbVotant = 0;
+                          }
+                          if (choix[5] != null) {
+                            nbVotant = prClassement[a][6];
+                            nbVotants[a][6] = nbVotant;
+                            nbVotant = 0;
+                          }
+                          if (choix[6] != null) {
+                            nbVotant = prClassement[a][7];
+                            nbVotants[a][7] = nbVotant;
+                            nbVotant = 0;
+                          }
+                          if (choix[7] != null) {
+                            nbVotant = prClassement[a][8];
+                            nbVotants[a][8] = nbVotant;
+                            nbVotant = 0;
+                          }
+                          if (choix[8] != null) {
+                            nbVotant = prClassement[a][9];
+                            nbVotants[a][9] = nbVotant;
+                            nbVotant = 0;
+                          }
+                          if (choix[9] != null) {
+                            nbVotant = prClassement[a][10];
+                            nbVotants[a][10] = nbVotant;
+                            nbVotant = 0;
+                          }
+                        }
+                        
+                      }
+                      nbVote++;
+                      //votes[i][j][t] 
+                    }
+                    for (var b = 0; b < votes[i][j].length; b++) { // boucle qui va mettre dans un nouveau tableau au nom et à la matière choisie les points totals de votes
+                     for (var c = 0; c < prClassement.length; c++) {
+                      if (votes[i][j][b] == prClassement[c][0]) {
+                        if (choix[0] == 'ACDA') {
+                            nvClassement[c][1] = (1/nbVote)*(1+nbVotants[c][1]);
+                          }
+                          if (choix[1] == 'ANG') {
+                            nvClassement[c][2] = (1/nbVote)*(1+nbVotants[c][2]);
+                          }
+                          if (choix[2] == 'APL') {
+                            nvClassement[c][3] = (1/nbVote)*(1+nbVotants[c][3]);
+                          }
+                          if (choix[3] == 'ART') {
+                            nvClassement[c][4] = (1/nbVote)*(1+nbVotants[c][4]);
+                          }
+                          if (choix[4] == 'ASR') {
+                            nvClassement[c][5] = (1/nbVote)*(1+nbVotants[c][5]);
+                          }
+                          if (choix[5] == 'EC') {
+                            nvClassement[c][6] = (1/nbVote)*(1+nbVotants[c][6]);
+                          }
+                          if (choix[6] == 'EGOD') {
+                            nvClassement[c][7] = (1/nbVote)*(1+nbVotants[c][7]);
+                          }
+                          if (choix[7] == 'MAT') {
+                            nvClassement[c][8] = (1/nbVote)*(1+nbVotants[c][8]);
+                          }
+                          if (choix[8] == 'SGBD') {
+                            nvClassement[c][9] = (1/nbVote)*(1+nbVotants[c][9]);
+                          }
+                          if (choix[9] == 'SPORT') {
+                            nvClassement[c][10] = (1/nbVote)*(1+nbVotants[c][10]);
+                          }
+                      }
+                    }
+                  }
+                  nbVote = 0;
+                }
+            }
+         }
+  var tab = new Array(nvClassement.length);
+  var addNotes = 0;
+  for (var z = 0; z < nvClassement.length; z++) {
+    tab[z] = [];
+    tab[z][0] = nvClassement[z][0];
+    for (var k=1; k < 11; k++) {
+      addNotes += nvClassement[z][k];
+    }
+    tab[z][1] = addNotes;
+    addNotes = 0;
+  }
+  var  tableauTrie = trivote(tab);
+  affichageTableau(tableauTrie);
+}
+    
+ function initialiserTableau() { // créer un tableau à deux dimensions : [11] (pour les 10 matières + le login) et [nombre de login total]
+   var x = 0;
+   var j=0;
+   for (var i in logins) {
+     x++;
+   }
+   var tabDeVotes = new Array(x);
+   var eleve = "";
+   
+   for (var t = 0; t < x; t++) { // création de la deuxième dimension du tableau
+      tabDeVotes[t] = new Array(11);
+    }
+     for (var r = 0; r < tabDeVotes.length; r++) {
+       if (!tabDeVotes[r]) tabDeVotes[r] = [];
+        for (var s = 1; s < 11; s++) { // remplit le reste du tableau à 0, les votes ne sont pas encore pris en compte
+          tabDeVotes[r][s] = 0;
+         }
+     }
+    for (var y in logins) { // va mettre dans la colonne 0 chaque login
+     if (logins.hasOwnProperty(y)) {
+         tabDeVotes[j][0] = y;
+         j++;
+     }
+   }
+   return tabDeVotes;
+ } 
+    
+ function remplissageTableau() {
+  var matiere = 1; // case du tableau pour une matière (1 = ACDA, 2 = ANG, 3 = APL, etc ...)
+  var votesEleve = initialiserTableau();
+  for (var i in votes) { // i prend chaque nom
+        if (votes.hasOwnProperty(i)) {
+            for (var j in votes[i]) { //j prend chaque matière 
+                for (var t = 0; t < votes[i][j].length; t++) { // récupère chaque nom pour qui la personne i a votée
+                     var nomVotee = votes[i][j][t]; // nomVotee prend le nom de la personne pour qui i a votée et la cherche dans le tableau votesEleve 
+                        for (var p = 0; p < votesEleve.length; p++ ) {
+                          if(votesEleve[p][0] == nomVotee)
+                          votesEleve[p][matiere] += 1;
+                        }
+                    }
+                    matiere++;
+                }
+          matiere =1;
+            }
+        }
+   //console.table(votesEleve);
+   return votesEleve;
+  }
+   
+    
+ function tableauMatiere(){
+    var tab= new Array(10);
+    var count =0;
+    var i2;
+    for(var i in votes){
+      i2=i;
+    }
+            for (var j in votes[i2]) {
+              tab[count]=j;
+              count++;
+            }
+        
+   
+   return tab;
+ }
+ function trivote(nvClassement) {
+   var tabMat= tableauMatiere();
+   var choix = new Array(10);
+   var choixT = document.getElementsByClassName('messageCheckbox');
+    var y = 0;
+    for (var v=0; v<10; v++) {
+      if (choixT[v].checked){
+        choix[y] = choixT[v].value;
+      }
+      y++;
+    }
+   var nbChoix=new Array(10);
+   for(var x=0;x<10;x++){
+     if(choix[x]==tabMat[x]){
+       nbChoix[x]=x;
+     }
+   }   
+    nvClassement=tricroissant(nvClassement);
+    return nvClassement;
+ }
+ 
+ function tricroissant( tab)
+ {
+   var position=0;
+  var pg=0;
+  
+  for(var i=0;i<tab.length;i++){
+    for(var j=i;j<tab.length;j++){
+        if(compare(pg,tab[j][1]) < 0){  
+         pg = tab[j][1];
+          position=j;
+        }
+    }
+    var tmpnb= tab[i][1];
+    var tmpnom= tab[i][0];
+
+    tab[i][1]=pg;
+    tab[i][0]=tab[position][0];
+
+    tab[position][1]=tmpnb;
+    tab[position][0]=tmpnom;
+    pg=0;
+    
+  }
+    return tab;
+ 
+}
+ function compare(a, b) {
+  return a - b;
+ }
+
+ function affichageTableau(tab){
+   var entete_login="logins";
+   var entete_notes="notes";
+   var string="";
+   var string2="";
+   var prenom = new Array();
+   var i = 0;
+   var j = 1;
+   
+   for (var r in logins) {
+     prenom[i] = [];
+     prenom[i][0] = r;
+     prenom[i][1] = logins[r];
+     i++;
+   }
+   for(var i=0; i<tab.length;i++){
+    for(var s =0; s<tab.length;s++) {
+     if (tab[i][0] == prenom[s][0])
+      string2=""+prenom[s][1]+"<br />";  
+     }
+     string=""+j+"<br />";
+     j++;
+     document.getElementById("val_login").innerHTML += string ;
+     document.getElementById("val_note").innerHTML += string2 ;
+   }
+   string="";
+   string2="";
+  }
+    
+</script>
+</head>
+  
+<body>
+  <div class="page">
+    <form>
+      <label for="pays">Quelle(s) matière(s)?</label><br />
+      <input type="checkbox" value="ACDA" name="matiere" class="messageCheckbox"> ACDA
+      <input type="checkbox" value="ANG" name="matiere" class="messageCheckbox"> ANG
+      <input type="checkbox" value="APL" name="matiere" class="messageCheckbox"> APL
+      <input type="checkbox" value="ART" name="matiere" class="messageCheckbox"> ART
+      <input type="checkbox" value="ASR" name="matiere" class="messageCheckbox"> ASR
+      <input type="checkbox" value="EC" name="matiere" class="messageCheckbox"> EC 
+      <input type="checkbox" value="EGOD" name="matiere" class="messageCheckbox"> EGOD 
+      <input type="checkbox" value="MAT" name="matiere" class="messageCheckbox"> MAT
+      <input type="checkbox" value="SGBD" name="matiere" class="messageCheckbox"> SGBD
+      <input type="checkbox" value="SPORT" name="matiere" class="messageCheckbox"> SPORT
+      <br />
+      <input type="button" value="Envoyer" onclick="ValiderFormulaire(this)" />
+    </form>
+ 
+    <table id="tableau">
+      <thead>
+        <tr>
+          <th>Classement</th>
+          <th>Prénom / Nom</th>
+        </tr>
+        <tr>
+          <td id= "val_login"></td>
+          <td id= "val_note"></td>
+        </tr>
+       
+    </thead>
+    </table>
+    
+    <p id="test"></p>
+      <p id="tt"></p>
+
+    </p>
+  </div>
+  
+</body>
+
+</html>
